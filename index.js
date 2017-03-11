@@ -21,12 +21,27 @@ var todos = ['eat', 'sleep', 'build a crud app'];
 var instructor = 'Elie'
 
 
-// app.get('/todos', function(req,res) {
-//     res.render('todos')
-// })
+app.get('/todos', function(req,res) {
+    res.render('todos', { todos: todos })
+})
+
+app.get('/todos/new', function(req,res) {
+    res.render('new-todo')
+})
+
+app.post('/todos', function(req, res) {
+    var newTask = req.body.task;
+    if (!todos.includes(newTask)){
+        todos.push(newTask);
+        res.redirect('todos');
+    } else {
+        res.redirect('todos');
+    }
+})
 
 
-app.get('/firstname', function(req, res){
+//use dashes, not capitalizing for route names
+app.get('/first-name', function(req, res){
     res.render('first', { firstName: instructor });
 })
 
