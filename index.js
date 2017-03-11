@@ -15,11 +15,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 
-// specify that the app is listening for a get request
-app.get('/', function(request, response) {
-    response.render('hello'); // because the view engine is set to ejs, this is asking it to render hello.ejs even though we haven't added the extension
+
+var todos = ['eat', 'sleep', 'build a crud app'];
+
+var instructor = 'Elie'
+
+
+// app.get('/todos', function(req,res) {
+//     res.render('todos')
+// })
+
+
+app.get('/firstname', function(req, res){
+    res.render('first', { firstName: instructor });
 })
-// respond with a callback with (request, response) or shorthand: (req, res)
 
 app.get('/joanne', function(request, response) {
     response.render('Hello Joanne!');
@@ -31,6 +40,13 @@ app.get('/person/:name', function(request, response) {
     var name = request.params.name
     response.send('Hi! ' + name);
 })
+
+
+// specify that the app is listening for a get request
+app.get('/', function(request, response) {
+    response.render('hello'); // because the view engine is set to ejs, this is asking it to render hello.ejs even though we haven't added the extension
+})
+// respond with a callback with (request, response) or shorthand: (req, res)
 
 app.get('/login', function(request, response) {
     response.render('login');
