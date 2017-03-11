@@ -33,12 +33,17 @@ app.post('/todos', function(req, res) {
     var newTask = req.body.task;
     if (!todos.includes(newTask)){
         todos.push(newTask);
-        res.redirect('todos');
+        res.redirect('/todos');
     } else {
-        res.redirect('todos');
+        res.redirect('/todos');
     }
 })
 
+app.post('/todos/:index', function(req, res) {
+    var deleteIndex = req.params.index
+    todos.splice(deleteIndex, 1);
+    res.redirect('/todos');
+})
 
 //use dashes, not capitalizing for route names
 app.get('/first-name', function(req, res){
@@ -70,7 +75,7 @@ app.get('/login', function(request, response) {
 app.post('/login', function(request, response) {
     var username = request.body.username;
     var password = request.body.password;
-    response.redirect('welcome');
+    response.redirect('/welcome');
 })
 
 app.get('/welcome', function(req, res) {

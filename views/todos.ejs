@@ -6,7 +6,10 @@
 
 <h2>list of items</h2>
 <ul>
-  <% todos.forEach(function(item) { %>
+  <% todos.forEach(function(item, index) { %>
       <li><%= item %></li>
+      <form action="/todos/<%= index %>" method="POST">
+        <input type="submit" value="x">
+      </form>
   <% }) %>
 </ul>
